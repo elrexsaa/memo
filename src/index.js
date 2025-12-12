@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/main.css';
-import './styles/animations.css';
 import App from './App';
+
+// Import Tailwind CSS
+import './styles/tailwind.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
