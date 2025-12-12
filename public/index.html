@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ec4899" />
+    <meta name="description" content="Website kenangan cinematic Elga dan Nikita sejak 1 November 2024" />
+    <meta name="keywords" content="elga, nikita, kenangan, cinta, foto, video, musik, catatan" />
+    <meta property="og:title" content="Kenangan Elga & Nikita" />
+    <meta property="og:description" content="Website kenangan cinta cinematic" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>Kenangan Elga & Nikita - Sejak 1 November 2024</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Splash Screen CSS -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .splash-heart {
+        width: 80px;
+        height: 80px;
+        background: white;
+        position: relative;
+        transform: rotate(45deg);
+        animation: heartbeat 1.5s ease-in-out infinite;
+        margin-bottom: 30px;
+      }
+      
+      .splash-heart:before,
+      .splash-heart:after {
+        content: '';
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+      }
+      
+      .splash-heart:before {
+        top: -40px;
+        left: 0;
+      }
+      
+      .splash-heart:after {
+        top: 0;
+        left: -40px;
+      }
+      
+      .splash-text {
+        color: white;
+        font-size: 24px;
+        font-family: 'Dancing Script', cursive;
+        text-align: center;
+        animation: fadeInOut 2s ease-in-out infinite;
+      }
+      
+      @keyframes heartbeat {
+        0%, 100% { transform: rotate(45deg) scale(1); }
+        50% { transform: rotate(45deg) scale(1.1); }
+      }
+      
+      @keyframes fadeInOut {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+      
+      #root {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+      
+      .loaded #root {
+        opacity: 1;
+      }
+      
+      .loaded #splash-screen {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+      <div class="splash-heart"></div>
+      <div class="splash-text">Elga & Nikita</div>
+    </div>
+
+    <!-- React Root -->
+    <div id="root"></div>
+
+    <!-- Load Script -->
+    <script>
+      // Hide splash screen when page loads
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.classList.add('loaded');
+          setTimeout(function() {
+            document.getElementById('splash-screen').style.display = 'none';
+          }, 500);
+        }, 2000);
+      });
+      
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
+  </body>
+</html>
