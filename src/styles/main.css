@@ -1,112 +1,19 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-@layer base {
-  * {
-    @apply antialiased;
-  }
-
-  html {
-    @apply scroll-smooth;
-  }
-
-  body {
-    @apply bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
-  }
-
-  ::selection {
-    @apply bg-pink-500/30 text-pink-800;
-  }
-
-  ::-webkit-scrollbar {
-    @apply w-3;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-pink-100 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-pink-400 to-rose-500 rounded-full;
-  }
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@layer components {
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent;
-  }
-
-  .premium-button {
-    @apply px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-2xl font-semibold 
-           shadow-xl shadow-pink-500/30 hover:shadow-2xl hover:shadow-pink-500/50 
-           transition-all duration-300 hover:scale-105 active:scale-95;
-  }
-
-  .floating-card {
-    @apply bg-white rounded-3xl shadow-2xl border border-pink-100 
-           hover:shadow-3xl transition-all duration-500;
-  }
-
-  .love-border {
-    @apply border-2 border-transparent bg-gradient-to-r from-pink-500 to-rose-500 bg-origin-border rounded-2xl;
-  }
-
-  .memory-card {
-    @apply relative overflow-hidden rounded-2xl bg-white shadow-xl 
-           hover:shadow-2xl transition-all duration-500 
-           before:absolute before:inset-0 before:bg-gradient-to-br before:from-pink-500/10 before:to-transparent before:opacity-0 
-           hover:before:opacity-100 before:transition-opacity before:duration-500;
-  }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-
-  .animate-spin-slow {
-    animation: spin 3s linear infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-heartbeat {
-    animation: heartbeat 1.5s ease-in-out infinite;
-  }
-
-  .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .text-shadow-xl {
-    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .transform-3d {
-    transform-style: preserve-3d;
-  }
-}
-
+/* Custom Animations */
 @keyframes blob {
   0%, 100% {
     transform: translate(0, 0) scale(1);
@@ -137,103 +44,23 @@
   }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+.animate-blob {
+  animation: blob 7s infinite;
 }
 
-.animate-shimmer {
-  animation: shimmer 2s infinite linear;
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.3) 50%, 
-    rgba(255,255,255,0) 100%);
-  background-size: 1000px 100%;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Custom Scrollbar */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: theme('colors.pink.400') theme('colors.pink.100');
+.animate-heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-/* Gradient Backgrounds */
-.bg-gradient-radial {
-  background-image: radial-gradient(circle at 50% 50%, 
-    var(--tw-gradient-stops));
+/* Custom Utilities */
+.gradient-text {
+  @apply bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent;
 }
 
-/* Romantic Pattern */
-.pattern-dots {
-  background-image: radial-gradient(circle at 1px 1px, 
-    theme('colors.pink.300') 1px, transparent 0);
-  background-size: 20px 20px;
-}
-
-.pattern-hearts {
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 30s-10-5-10-15c0-5 5-10 10-10s10 5 10 10c0 10-10 15-10 15z' fill='%23f9a8d4' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-}
-
-/* Loading Animation */
-.loading-wave {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.loading-bar {
-  width: 4px;
-  height: 20px;
-  background: linear-gradient(to top, theme('colors.pink.400'), theme('colors.rose.500'));
-  border-radius: 2px;
-  animation: loading-wave-animation 1s ease-in-out infinite;
-}
-
-.loading-bar:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.loading-bar:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-.loading-bar:nth-child(4) {
-  animation-delay: 0.3s;
-}
-
-@keyframes loading-wave-animation {
-  0%, 100% {
-    height: 20px;
-  }
-  50% {
-    height: 40px;
-  }
-}
-
-/* Page Transition */
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 500ms, transform 500ms;
-}
-
-.page-transition-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.page-transition-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 500ms, transform 500ms;
+.glass-card {
+  @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl;
 }
